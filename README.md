@@ -67,22 +67,40 @@ Install Shadcn https://ui.shadcn.com/docs/installation/vite
 To add any Shadcn component, for e.g.
 $ npx shadcn-ui@latest add button
 $ npx shadcn-ui@latest add form
-
+$ npx shadcn-ui@latest add textarea
+{useForm} of Shadcn  https://ui.shadcn.com/docs/components/form
 
 # Purpose of Files
+
+/.env.local 
+    to store local configurations
 
 Create /public/assets, /public/assets/images, /public/assets/icons, ...
     to store public image files
 
 Create /src/components/shared
-    and put any shared little components there
+    and put any components shared by pages there
+
+Create /src/types/index.ts
+    to store pre-defined types
 
 Create /src/lib/
     is where you can keep any application-specific files that are used globally throughout the app
 
+Create /src/lib/backend/api.ts, /src/lib/backend/config.ts
+    for backend APIs calls
+
 Create /src/lib/validation, /src/lib/validation/index.ts
     is where to keep form validation schemas
-    
+
+Create /src/lib/utils.ts
+    keep utility functions
+
+Create /src/constants/index.ts
+    is where to keep constant objects
+
+
+
 
 In /src/App.tsx    
     Control page redirection using router
@@ -138,20 +156,23 @@ In /src/_auth/AuthLayout.tsx
     }
 
 
-{useForm} of Shadcn  https://ui.shadcn.com/docs/components/form
+
 
 
 
 #Note
-The package to control routing of the pages
+The package to control routing pages
 $ npm install react-router-dom
     Routes, 
     Route, 
-    Outlet, 
-    Navigate
+    Outlet,
+    Link,
+    NavLink,
+    useNavigate,
+    useLocation
 
-
-
+React UI components
+$ npm install react-dropzone
 
 
 

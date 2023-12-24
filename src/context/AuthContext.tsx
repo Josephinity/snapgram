@@ -8,6 +8,7 @@ export const INITIAL_USER = {
     username: '',
     email: '',
     imageUrl: '',
+    imageId: '',
     bio: '',
 };
 
@@ -25,12 +26,14 @@ const AuthContext = createContext<IContextType>(INITIAL_STATE)
 const AuthProvider = ({children}: {children: ReactNode}) => {
 
     const [user, setUser] = useState<IUser>(INITIAL_USER);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const navigate = useNavigate()
 
     const checkAuthUser = async () => {
         try {
+            setIsLoading(true)
+
             const currentAccount = await getCurrentUser();
 
             if(!currentAccount) return false;
@@ -41,6 +44,7 @@ const AuthProvider = ({children}: {children: ReactNode}) => {
                 username: currentAccount.username,
                 email: currentAccount.email,
                 imageUrl: currentAccount.imageUrl,
+                imageId: currentAccount.imageId,
                 bio: currentAccount.bio,
             })
 
@@ -57,10 +61,12 @@ const AuthProvider = ({children}: {children: ReactNode}) => {
     //whenever the page is reloaded: check for the logged-in user in local storage
     useEffect(() => {
         if(localStorage.getItem('cookieFallback') === '[]'
-            || localStorage.getItem('cookieFallback') === null) {
+            || localStorage.getItem('cookieFallback') === null
+        ) {
             navigate('/sign-in')
         }
         checkAuthUser()
+
     }, [])
 
 

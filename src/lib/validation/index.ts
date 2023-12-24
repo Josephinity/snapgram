@@ -23,11 +23,27 @@ export const newPostValidationSchema = z.object({
     caption: z.string().max(2200, {
         message: "Exceeded the limit of 2200 characters"
     }),
-    file: z.any(),
+    file: z.custom<File[]>(),
     location: z.string().max(256, {
         message: "Exceeded the limit of 256 characters"
     }),
-    tags: z.string().max(2200, {
-        message: "Exceeded the limit of 2200 characters"
+    tags: z.string().max(256, {
+        message: "Exceeded the limit of 256 characters"
+    }),
+})
+
+export const profileValidationSchema = z.object({
+    file: z.custom<File>(),
+    username: z.string().min(2, {
+            message: "Username should be no less than 2 characters"
+        }).max(32, {
+            message: "Exceeded the limit of 32 characters"
+    }),
+    name: z.string().max(128, {
+        message: "Exceeded the limit of 128 characters"
+    }),
+    email: z.string().email(),
+    bio: z.string().max(256, {
+        message: "Exceeded the limit of 256 characters"
     }),
 })

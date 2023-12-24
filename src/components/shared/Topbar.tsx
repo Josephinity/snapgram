@@ -17,6 +17,8 @@ function Topbar() {
             }
         } catch(e) {
             console.log(e)
+        } finally {
+            navigate('/sign-in')
         }
     }
 

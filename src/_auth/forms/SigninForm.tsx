@@ -13,12 +13,13 @@ import {toast} from "@/components/ui/use-toast.ts";
 import {useSignInAccount} from "@/lib/react-query/queriesAndMutations.ts";
 import {useUserContext} from "@/context/AuthContext.tsx";
 import {useEffect} from "react";
+// import {useEffect} from "react";
 
 
 function SigninForm() {
 
     const {mutateAsync: signInAccount, isPending: isSigningIn } = useSignInAccount();
-    const {checkAuthUser, isLoading: isLoadingUser} = useUserContext();
+    const {checkAuthUser, isAuthenticated, isLoading: isLoadingUser} = useUserContext();
     const navigate = useNavigate();
 
 
@@ -53,11 +54,11 @@ function SigninForm() {
         }
     }
 
-    // useEffect(() => {
-    //     if(isAuthenticated) {
-    //         navigate('/')
-    //     }
-    // }, []);
+    useEffect(() => {
+        if(isAuthenticated) {
+            navigate('/')
+        }
+    }, [isAuthenticated]);
 
     return (
         <Form {...form}>

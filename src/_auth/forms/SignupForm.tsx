@@ -122,9 +122,13 @@ function SignupForm() {
 
                     <Button type="submit" className="shad-button_primary">
                         {
-                            isCreatingAccount ? (
+                            isCreatingAccount || isSigningIn || isLoadingUser ? (
                                 <div className="flex-center gap-2">
-                                    <Loader /> Loading...
+                                    <Loader /> {
+                                        isSigningIn || isLoadingUser
+                                            ? "Signing in..."
+                                            : "Signing up..."
+                                    }
                                 </div>
                             ): "Sign Up"
                         }

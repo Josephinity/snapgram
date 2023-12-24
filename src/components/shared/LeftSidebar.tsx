@@ -13,12 +13,12 @@ function LeftSidebar() {
 
     async function onSignOut() {
         try {
-            const isSuccess = await signOutAccount()
-            if(isSuccess) {
-                navigate(0)
-            }
+            const response = await signOutAccount()
+            if(!response) throw Error;
         } catch(e) {
             console.log(e)
+        } finally {
+            navigate('/sign-in')
         }
     }
 
@@ -31,7 +31,7 @@ function LeftSidebar() {
                 <Link to={`/profile/${user.id}`} className="flex-center">
                     <img src={user.imageUrl || '/assets/icon/profile-placeholder.svg'} className="rounded-full h-12 w-12 mr-2" />
                     <div>
-                        <p className="body-bold">{user.username}</p>
+                        <p className="body-bold">{ user.name || user.username }</p>
                         <p className="small-regular text-light-3">@{user.username}</p>
                     </div>
                 </Link>

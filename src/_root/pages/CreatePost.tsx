@@ -1,9 +1,6 @@
 import PostForm from "@/components/forms/PostForm.tsx";
 
-
 function CreatePost() {
-
-
     return (
         <section className="common-container">
             <div className="w-full max-w-5xl flex-start">
@@ -13,7 +10,7 @@ function CreatePost() {
                 <h2 className="h3-bold md:h2-bold w-full">Create Post</h2>
             </div>
             <div className="w-full max-w-5xl">
-                <PostForm />
+                <PostForm action='Create'/>
             </div>
         </section>
     );
